@@ -1,17 +1,20 @@
-# Everest / North 50 — Briefs
+# Everest × North 50 — Brief
 
-Self-contained HTML briefing documents. Open any file directly in a browser — no build step, no dependencies beyond Google Fonts loaded over the network.
+One self-contained HTML page, published via GitHub Pages.
 
-| File | What it is |
-| --- | --- |
-| `Everest_N50_Brief.html` | Everest and North 50 — Strategic and Technical Brief |
-| `Everest_Briefing_Jason.html` | Everest briefing, Jason version |
-| `Everest_Briefing_Jason_v2.html` | Everest briefing, Jason version 2 |
+**Live:** https://feldtdesign-ship-it.github.io/everest-n50-brief/
 
-## Viewing
+## Structure
 
-Double-click the file, or:
+`index.html` is the whole site. It has two sections:
 
-```bash
-open Everest_N50_Brief.html
-```
+- **Part I — Strategic and technical brief** (from `source/Everest_N50_Brief.html`)
+- **Part II — Corrections and fact check** (from `source/Everest_Briefing_Jason_v2.html`)
+
+A single sidebar nav covers both parts. No build step, no dependencies except Google Fonts.
+
+## Sources
+
+The `source/` folder keeps the original standalone documents for reference. `Everest_Briefing_Jason.html` is the superseded first version and is **not** part of the published page.
+
+To rebuild `index.html` after editing a source file, the two parts must be re-merged by hand — there is no build script.
