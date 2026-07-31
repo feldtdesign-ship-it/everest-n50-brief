@@ -25,4 +25,18 @@ The `source/` folder keeps the original standalone documents for reference. `Eve
 python3 build.py
 ```
 
-`build.py` pulls the two parts out of the source documents, namespaces their section ids (`a01…`, `b01…`) so they can share one page, and adds the tab bar and the merged stylesheet. Edits made directly to `index.html` will be overwritten.
+`build.py` pulls the two parts out of the source documents, namespaces their section ids (`a01…`, `b01…`) so they can share one page, and adds the tab bar, the merged stylesheet, and the link-preview meta tags. Edits made directly to `index.html` will be overwritten.
+
+## Link previews
+
+When the URL is pasted into iMessage, Slack, LinkedIn, etc., the card comes from the Open Graph tags in `index.html` and the image at `assets/og.png` (1200×630).
+
+The card is designed in `assets/og-card.html`. After editing it, re-render:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=assets/og.png assets/og-card.html
+```
+
+Title and description live in `build.py` (`OG_TITLE`, `OG_DESC`). Favicons are `assets/favicon-32.png`, `assets/icon-512.png`, and `assets/apple-touch-icon.png`.
+
+Note: iMessage, Slack, and LinkedIn cache previews aggressively. A link that was shared before these tags existed may keep showing the old bare card for a while.

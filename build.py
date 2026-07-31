@@ -31,6 +31,33 @@ main_b   = prefix_ids(grab(B, r'<main class="main">', r'\n  </main>'), 'b')
 head_links = "\n".join(l for l in head_a.strip().split("\n")
                        if l.strip().startswith(("<meta", "<link")))
 
+SITE = "https://feldtdesign-ship-it.github.io/everest-n50-brief"
+OG_TITLE = "Everest &times; North 50"
+OG_DESC = ("Strategic and technical brief. Who Everest is, what they can actually make, "
+           "and where North 50 fits — plus a v2 fact check.")
+
+social = """<meta name="description" content="{desc}">
+<link rel="canonical" href="{site}/">
+<link rel="icon" type="image/png" sizes="32x32" href="{site}/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{site}/assets/icon-512.png">
+<link rel="apple-touch-icon" href="{site}/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#192048">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="North 50 Building Systems">
+<meta property="og:url" content="{site}/">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{site}/assets/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Everest and North 50 strategic and technical brief">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{site}/assets/og.png">""".format(
+    site=SITE, title=OG_TITLE, desc=OG_DESC)
+
 # rules that exist only in v2, scoped to part B where they conflict with part A
 extra_css = """
   /* ---- merge layer: part B overrides + combined-page chrome ---- */
@@ -123,6 +150,7 @@ doc = """<!DOCTYPE html>
 <head>
 %s
 <title>Everest &times; North 50 | Strategic Brief and Corrections</title>
+%s
 <style>
 %s
 %s
@@ -225,7 +253,7 @@ doc = """<!DOCTYPE html>
 </script>
 </body>
 </html>
-""" % (head_links, style_a, extra_css,
+""" % (head_links, social, style_a, extra_css,
        '<header class="mast">' + mast_a + '</header>',
        rule_a, tabs, nav, open_a, main_a, open_b, main_b)
 
